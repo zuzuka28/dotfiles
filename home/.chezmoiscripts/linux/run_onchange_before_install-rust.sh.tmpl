@@ -1,0 +1,8 @@
+{{ if and (eq .osid "linux-pop" "linux-ubuntu") (not .ephemeral) -}}
+
+#!/bin/sh
+
+bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
+
+{{ end -}}

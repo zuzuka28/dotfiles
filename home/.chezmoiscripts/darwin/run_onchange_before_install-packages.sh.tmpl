@@ -1,0 +1,66 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+{{ $brews := list
+     "gopass"
+     "age"
+     "curl"
+     "wget"
+     "git"
+     "gnupg2"
+     "bat"
+     "fzf"
+     "jq"
+     "fd"
+     "ranger"
+     "ripgrep"
+     "tmux"
+     "llvm"
+     "neovim"
+     "python"
+     "go"
+     "rustup-init"
+     "yarn"
+     "nvm"
+     "node"
+     "typescript"
+     "openjdk"
+     "docker"
+     "docker-compose"
+     "kubectl"
+     "pinentry-mac" -}}
+{{ $casks := list
+     "iterm2"
+     "visual-studio-code"
+     "firefox"
+     "tor-browser"
+     "tunnelblick"
+     "postman"
+     "lens" -}}
+
+{{ if eq .chezmoi.arch "amd64" -}}
+{{   $brews = concat $brews (list
+       "shellcheck") -}}
+{{   $casks = concat $casks (list
+       "virtualbox") -}}
+{{ end -}}
+
+{{ if .personal -}}
+{{   $brews = concat $brews (list
+       "pspg") -}}
+{{   $casks = concat $casks (list
+       "telegram"
+       "obsidian"
+       "syncthing" ) -}}
+{{ end -}}
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end -}}
+EOF
+

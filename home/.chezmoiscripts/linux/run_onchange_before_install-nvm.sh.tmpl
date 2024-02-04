@@ -1,0 +1,7 @@
+{{ if and (eq .osid "linux-pop" "linux-ubuntu") (not .ephemeral) -}}
+
+#!/bin/sh
+
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+
+{{ end -}}

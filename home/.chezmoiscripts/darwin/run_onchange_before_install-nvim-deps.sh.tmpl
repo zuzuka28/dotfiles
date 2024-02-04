@@ -1,0 +1,47 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+brew tap dart-lang/dart flutter/flutter homebrew/cask
+
+{{ $brews := list
+     "rustup-init"
+     "yarn"
+     "ranger"
+     "pynvim"
+     "pytest"
+     "fd"
+     "mingw-w64"
+     "openjdk"
+     "rust"
+     "go"
+     "pyinstaller"
+     "python"
+     "perl"
+     "lua"
+     "node"
+     "typescript"
+     "php"
+     "make"
+     -}}
+{{ $casks := list
+     "flutter" -}}
+
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end -}}
+EOF
+
+
+cargo install grcov
+
+yarn add global jest typedoc jdoc
+
+pip install nuitka
+
+go install golang.org/x/tools/cmd/godoc@latest
