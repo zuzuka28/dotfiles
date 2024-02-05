@@ -34,8 +34,6 @@
 
 
 {{ if and .personal (not .headless) -}}
-{{   $packages = mustAppend $packages "xclip" -}}
-
 {{   $classicSnaps = concat $classicSnaps (list "telegram-desktop" "obsidian") -}}
 {{ end -}}
 

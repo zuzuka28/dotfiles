@@ -1,0 +1,14 @@
+{{ if and (eq .osid "linux-pop" "linux-ubuntu") (not .ephemeral) -}}
+
+#!/bin/sh
+
+sudo apt-get -y git gnome-tweak-tool gnome-themes-extra gtk2-engines-murrine sassc
+
+git clone https://github.com/vinceliuice/Tela-circle-icon-theme.git icon-theme
+bash -c "cd icon-theme && ./install.sh && rm -rf icon-theme"
+
+git clone https://github.com/vinceliuice/Graphite-gtk-theme.git graphite-theme
+bash -c "cd graphite-theme && ./install.sh && rm -rf graphite-theme"
+
+
+{{ end -}}
