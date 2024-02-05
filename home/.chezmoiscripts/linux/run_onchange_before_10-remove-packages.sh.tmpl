@@ -18,10 +18,4 @@ set -eufo pipefail
 
 {{ $sudo }}apt-get remove -y {{ $packages | join " " }}
 
-{{ if lookPath "snap" }}
-{{   range $snaps }}
-snap info {{ . }} && {{ $sudo }}snap remove {{ . }}
-{{   end }}
-{{ end }}
-
 {{ end -}}
