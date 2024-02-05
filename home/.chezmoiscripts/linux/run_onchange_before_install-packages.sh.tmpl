@@ -4,6 +4,7 @@
      "curl"
      "wget"
      "git"
+     "age"
      "bat"
      "fzf"
      "gnupg"
@@ -34,7 +35,8 @@
 
 {{ if and .personal (not .headless) -}}
 {{   $packages = mustAppend $packages "xclip" -}}
-{{   $classicSnaps = mustAppend $classicSnaps "telegram-desktop" -}}
+
+{{   $classicSnaps = concat $classicSnaps (list "telegram-desktop" "obsidian") -}}
 {{ end -}}
 
 {{ $sudo := "sudo " -}}
