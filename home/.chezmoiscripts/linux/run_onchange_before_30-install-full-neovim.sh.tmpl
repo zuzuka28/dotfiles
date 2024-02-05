@@ -8,6 +8,9 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+nvm install node
+nvm use node
+
 sudo apt update
 sudo apt install yarn ranger fd-find
 sudo apt install neovim python3-pip
