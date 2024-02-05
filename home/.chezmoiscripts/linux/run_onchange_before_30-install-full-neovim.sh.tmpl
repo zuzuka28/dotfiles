@@ -1,9 +1,11 @@
+{{ if and (eq .osid "linux-pop" "linux-ubuntu") -}}
 #!/bin/bash
 
 set -eufo pipefail
 
 sudo apt update
 sudo apt install yarn ranger fd-find
+sudo apt install neovim
 pip install pynvim pytest
 yarn add global jest typedoc jdoc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -15,3 +17,4 @@ pip install nuitka
 go install golang.org/x/tools/cmd/godoc@latest
 sudo snap install dart flutter --classic
 
+{{ end -}}
