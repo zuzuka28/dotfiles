@@ -28,6 +28,7 @@
 
 {{- $gopass_secret  := promptStringOnce . "email  " "Enter email" -}}
 {{- $email  := promptStringOnce . "gopass_secret  " "Enter Secret Passphrase" -}}
+{{- $hostname := .chezmoi.hostname -}}
 
 [data]
     ephemeral = {{ $ephemeral }}
