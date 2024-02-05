@@ -1,5 +1,7 @@
 {{ if and (eq .osid "linux-pop" "linux-ubuntu") (not .ephemeral) -}}
 
+#!/bin/bash
+
 curl https://packages.gopass.pw/repos/gopass/gopass-archive-keyring.gpg | sudo tee /usr/share/keyrings/gopass-archive-keyring.gpg >/dev/null
 cat << EOF | sudo tee /etc/apt/sources.list.d/gopass.sources
 Types: deb
