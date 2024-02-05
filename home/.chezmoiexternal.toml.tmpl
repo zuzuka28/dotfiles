@@ -57,17 +57,3 @@
     executable = true
     path = "age/age-keygen"
 {{- end }}
-
-{{- if and (not .ephemeral) (not .headless) }}
-{{- $fontDir := "" }}
-{{- if eq .chezmoi.os "darwin" }}
-    {{- $fontDir = "Library/Fonts" }}
-{{- else if eq .chezmoi.os "linux" }}
-    {{- $fontDir = ".local/share/fonts" }}
-{{- end }}
-{{- $nerdGoMonoVersionTag := (gitHubLatestRelease "ryanoasis/nerd-fonts").TagName }}
-["{{ $fontDir }}/{{ . }}"]
-    type = "archive-file"
-    url = "https://github.com/ryanoasis/nerd-fonts/releases/download/{{ $nerdGoMonoVersionTag }}/Go-Mono.zip"
-    refreshPeriod = "168h"
-{{- end }}
