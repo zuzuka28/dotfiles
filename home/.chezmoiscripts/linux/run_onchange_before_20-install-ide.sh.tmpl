@@ -55,8 +55,8 @@ curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
 # install rust
-bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
-curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
+{{ $sudo }} bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | {{ $sudo }} sh
 
 # install node
 nvm install node
