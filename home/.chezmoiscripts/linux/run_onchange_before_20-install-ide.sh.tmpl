@@ -4,7 +4,6 @@
     "neovim"
     "ranger"
     "fd-find"
-    "yarn"
     "python3-pip"
     "mingw-w64"
     "default-jdk"
@@ -58,7 +57,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
 # install yarn
- sudo curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+npm install -g yarn
 
 # install rust
 {{ $sudo }} bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
