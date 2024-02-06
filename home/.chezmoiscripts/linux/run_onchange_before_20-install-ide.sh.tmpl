@@ -51,7 +51,7 @@ set -eufo pipefail
 # install kitty
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
 
-# install nvm
+# install nvm and latest node
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
 export NVM_DIR="$HOME/.nvm"
@@ -60,10 +60,6 @@ export NVM_DIR="$HOME/.nvm"
 # install rust
 {{ $sudo }} bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | {{ $sudo }} sh
-
-# install node
-nvm install node
-nvm use default
 
 {{ $sudo }}apt-get update
 {{ $sudo }}apt-get install -y {{ $packages | join " " }}
