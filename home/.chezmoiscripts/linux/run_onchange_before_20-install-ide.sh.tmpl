@@ -58,6 +58,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # install yarn
 npm install -g yarn
+export PATH="`yarn global bin`:$$PATH"
 
 # install rust
 {{ $sudo }} bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
