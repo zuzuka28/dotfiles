@@ -66,7 +66,7 @@
 {{-     $fontDir = ".local/share/fonts" }}
 {{-   end }}
 {{- $nerdGoMonoTag := (gitHubLatestRelease "ryanoasis/nerd-fonts").TagName }}
-["{{ $fontDir }}/{{ . }}"]
+["{{ $fontDir }}"]
     type = "archive"
     url = "https://github.com/ryanoasis/nerd-fonts/releases/download/{{ $nerdGoMonoTag }}/Go-Mono.zip"
     format = "zip"
