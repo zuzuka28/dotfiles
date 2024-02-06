@@ -26,7 +26,7 @@
 {{-   end -}}
 {{- end -}}
 
-{{- $email  := promptStringOnce . "gopass_secret  " "Enter Secret Passphrase" -}}
+{{- $email := promptStringOnce . "email  " "Enter email" -}}
 {{- $hostname := .chezmoi.hostname -}}
 
 [data]
