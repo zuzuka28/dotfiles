@@ -61,6 +61,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 source "$NVM_DIR/nvm.sh"
 
+nvm install node
+nvm use node
+
 # install yarn
 {{ $sudo }} npm install -g yarn
 export PATH="`yarn global bin`:$PATH"
