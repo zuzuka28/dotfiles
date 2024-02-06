@@ -72,7 +72,7 @@ curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
 
 yarn global add {{ $gyarns | join " " }}
 
-pip install {{ $pips | join " " }}
+pip install {{ $pips | join " " }} --break-system-packages
 
 go install {{ $gops | join " " }}
 
