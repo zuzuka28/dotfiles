@@ -1,0 +1,75 @@
+{{ if eq .osid "linux-debian" "linux-raspbian" "linux-ubuntu" (not .ephemeral) -}}
+
+{{ $packages := list
+    "neovim"
+    "ranger"
+    "fd-find"
+    "yarn"
+    "python3-pip"
+    "mingw-w64"
+    "default-jdk"
+    "python3"
+    "ruby"
+    "perl"
+    "lua5.3"
+    "make"
+    "kubectl"
+    "docker-ce"
+    "docker-ce-cli"
+    "containerd.io"
+    "docker-buildx-plugin"
+    "docker-compose-plugin" -}}
+
+{{ $gyarns := list
+    "jest"
+    "typedoc"
+    "jdoc"
+    "markmap" -}}
+
+{{ $pips := list
+    "pyinstaller"
+    "pynvim"
+    "pytest"
+    "nuitka" -}}
+
+{{ $gops := list
+    "golang.org/x/tools/cmd/godoc@latest" -}}
+
+{{ $cargos := list
+    "git-delta"
+    "grcov" -}}
+
+{{ $sudo := "sudo " -}}
+{{ if eq .chezmoi.username "root" -}}
+{{   $sudo = "" -}}
+{{ end -}}
+
+#!/bin/sh
+
+set -eufo pipefail
+
+# install kitty
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
+
+# install nvm
+curl ttps://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+
+# install rust
+bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
+
+# install node
+nvm install node
+
+{{ $sudo }}apt-get update
+{{ $sudo }}apt-get install -y {{ $packages | join " " }}
+
+{{ $sudo }}yarn global add {{ $gyarns | join " " }}
+
+{{ $sudo }}pip install{{ $pips | join " " }}
+
+{{ $sudo }}go install {{ $gops | join " " }}
+
+{{ $sudo }}cargo install {{ $cargos | join " " }}
+
+{{ end -}}
