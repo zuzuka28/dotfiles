@@ -52,20 +52,17 @@ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-source "$NVM_DIR/nvm.sh"
-
-nvm install node
-nvm use node
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # install yarn
-{{ $sudo }} npm install -g yarn
+npm install -g yarn
 export PATH="`yarn global bin`:$PATH"
 
 # install kitty
 curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
 
 # install rust
-{{ $sudo }} bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+{{ $sudo }}bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
 
 
