@@ -1,3 +1,3 @@
-{{ if .personal -}}
-{{   gopass "Personal.SSH.PrivateKey" }}
+{{ if .personal (lookPath "gopass") -}}
+{{   gopass "ssh/private" }}
 {{ end -}}
