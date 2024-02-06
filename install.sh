@@ -20,4 +20,10 @@ fi
 # POSIX way to get script's dir: https://stackoverflow.com/a/29834779/12156188
 script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
 # exec: replace current process with chezmoi init
+
+if [ ! -f "${script_dir}/key.txt" ]; then
+    mkdir -p "${HOME}/.config/gopass/age"
+    cp "${script_dir}/key.txt" "${HOME}/.config/gopass/age/identities"
+fi
+
 exec "$chezmoi" init --apply "--source=$script_dir"

@@ -14,11 +14,6 @@ EOF
 sudo apt update
 sudo apt install -y gopass gopass-archive-keyring
 
-if [ ! -f "${HOME}/.config/chezmoi/key.txt" ]; then
-    mkdir -p "${HOME}/.config/gopass/age"
-    cp "${HOME}/.config/chezmoi/key.txt" "${HOME}/.config/gopass/age/identities"
-fi
-
 gopass clone --crypto=age git@github.com:zuzuka28/secrets.git
 
 {{ end -}}
