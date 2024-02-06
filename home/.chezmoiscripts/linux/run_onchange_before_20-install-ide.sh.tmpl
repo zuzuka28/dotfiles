@@ -1,6 +1,7 @@
 {{ if eq .osid "linux-debian" "linux-raspbian" "linux-ubuntu" (not .ephemeral) -}}
 
 {{ $packages := list
+    "golang"
     "neovim"
     "ranger"
     "fd-find"
@@ -69,12 +70,12 @@ curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
 {{ $sudo }}apt-get update
 {{ $sudo }}apt-get install -y {{ $packages | join " " }}
 
-{{ $sudo }}yarn global add {{ $gyarns | join " " }}
+yarn global add {{ $gyarns | join " " }}
 
-{{ $sudo }}pip install{{ $pips | join " " }}
+pip install{{ $pips | join " " }}
 
-{{ $sudo }}go install {{ $gops | join " " }}
+go install {{ $gops | join " " }}
 
-{{ $sudo }}cargo install {{ $cargos | join " " }}
+cargo install {{ $cargos | join " " }}
 
 {{ end -}}
