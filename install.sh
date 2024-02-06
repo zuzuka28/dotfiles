@@ -21,9 +21,9 @@ fi
 script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
 # exec: replace current process with chezmoi init
 
-if [ ! -f "${script_dir}/key.txt" ]; then
+if [ ! -f "./key.txt" ]; then
     mkdir -p "${HOME}/.config/gopass/age"
-    cp "${script_dir}/key.txt" "${HOME}/.config/gopass/age/identities"
+    cp "./key.txt" "${HOME}/.config/gopass/age/identities"
 fi
 
 exec "$chezmoi" init --apply "--source=$script_dir"
