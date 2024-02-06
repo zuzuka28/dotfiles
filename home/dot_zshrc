@@ -8,7 +8,7 @@ fi
 # If you come from bash you might have to change your $PATH.
 
 export PATH=/home/zuzuka28/go/bin:/home/zuzuka28/.cargo/bin:/home/zuzuka28/.local/bin:$PATH
-
+export NVM_DIR="$HOME/.nvm"
 source "$NVM_DIR/nvm.sh"
 
 # Path to your oh-my-zsh installation.
