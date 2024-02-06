@@ -2,7 +2,6 @@
 
 set -eufo pipefail
 
-brew tap dart-lang/dart flutter/flutter homebrew/cask
 
 {{ $brews := list
      "rustup-init"
@@ -23,10 +22,8 @@ brew tap dart-lang/dart flutter/flutter homebrew/cask
      "typescript"
      "php"
      "make"
+     "markmap"
      -}}
-{{ $casks := list
-     "flutter" -}}
-
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range ($brews | sortAlpha | uniq) -}}
