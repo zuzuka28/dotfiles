@@ -55,6 +55,7 @@ curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin launch=n
 curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | {{ $sudo }} sh
 
 # install nvm and latest node
+{{ $sudo }}rm -rf "$HOME/.nvm"
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
 export NVM_DIR="$HOME/.nvm"
