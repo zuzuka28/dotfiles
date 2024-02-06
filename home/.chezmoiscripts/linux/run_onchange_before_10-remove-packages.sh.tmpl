@@ -20,4 +20,11 @@ set -eufo pipefail
 
 {{ $sudo }}apt-get remove -y {{ $packages | join " " }}
 
+{{ $sudo }}apt purge -y snapd && \
+{{ $sudo }}rm -rf ~/snap && \
+{{ $sudo }}rm -rf /snap && \
+{{ $sudo }}rm -rf /var/snap && \
+{{ $sudo }}rm -rf /var/lib/snapd && \
+{{ $sudo }}apt-mark hold snap
+
 {{ end -}}

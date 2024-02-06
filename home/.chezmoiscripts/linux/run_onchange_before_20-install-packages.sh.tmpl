@@ -22,8 +22,7 @@
      "tmux"
      "libfuse2"
      -}}
-{{ $snaps := list -}}
-{{ $classicSnaps := list -}}
+{{ $flatpaks := list "io.neovim.nvim"-}}
 
 {{ if eq .osid "linux-ubuntu" -}}
 {{   $packages = mustAppend $packages "btop" -}}
@@ -31,14 +30,14 @@
 
 {{ if not .headless -}}
 {{   $packages = mustAppend $packages "xclip" -}}
-{{   $classicSnaps = mustAppend $classicSnaps "code" -}}
+{{   $flatpaks  = mustAppend $flatpaks "com.visualstudio.code" -}}
 {{ end -}}
 
 
 {{ if and .personal (not .headless) -}}
-{{   $classicSnaps = concat $classicSnaps (list
-     "telegram-desktop"
-     "obsidian"
+{{   $flatpaks  = concat $flatpaks (list
+     "org.telegram.desktop"
+     "md.obsidian.Obsidian"
 ) -}}
 {{ end -}}
 
@@ -54,12 +53,13 @@ set -eufo pipefail
 {{ $sudo }}apt-get update
 {{ $sudo }}apt-get install -y {{ $packages | join " " }}
 
-{{ if lookPath "snap" }}
-{{   range $snaps }}
-( snap info {{ . }} | grep -q ^installed: ) || {{ $sudo }}snap install {{ . }}
-{{   end }}
-{{   range $classicSnaps }}
-( snap info {{ . }} | grep -q ^installed: ) || {{ $sudo }}snap install --classic {{ . }}
+{{ $sudo }}apt install -y flatpak && \
+{{ $sudo }}flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+{{ $sudo }}apt install -y gnome-software gnome-software-plugin-flatpak
+
+{{ if lookPath "flatpak" }}
+{{   range $flatpaks  }}
+{{ $sudo }}flatpak install -y flathub {{ . }}
 {{   end }}
 {{ end }}
 
