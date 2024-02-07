@@ -22,7 +22,7 @@
      "tmux"
      "libfuse2"
      -}}
-{{ $flatpaks := list "io.neovim.nvim"-}}
+{{ $flatpaks := list "io.neovim.nvim" -}}
 
 {{ if eq .osid "linux-ubuntu" -}}
 {{   $packages = mustAppend $packages "btop" -}}
