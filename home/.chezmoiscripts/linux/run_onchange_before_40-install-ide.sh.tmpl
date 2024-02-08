@@ -1,4 +1,4 @@
-{{ if eq .osid "linux-debian" "linux-raspbian" "linux-ubuntu" (not .ephemeral) -}}
+{{ if and (eq .osid "linux-debian" "linux-raspbian" "linux-ubuntu") (not .ephemeral) -}}
 
 {{ $packages := list
     "golang"
