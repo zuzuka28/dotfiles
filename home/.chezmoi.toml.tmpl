@@ -26,8 +26,16 @@
 {{-   end -}}
 {{- end -}}
 
+
+{{- if $personal  -}}
+{{- $setupGopass = promptBoolOnce . "setupGopass" "setupGopass" -}}
+{{- end -}}
+
+
+
 {{- $email := promptStringOnce . "email  " "Enter email" -}}
 {{- $hostname := .chezmoi.hostname -}}
+
 
 [data]
     ephemeral = {{ $ephemeral }}
@@ -35,6 +43,8 @@
     headless = {{ $headless }}
     hostname = {{ $hostname | quote }}
     personal = {{ $personal }}
+    setupGopass = {{ $setupGopass }}
+
     osid = {{ $osID | quote }}
 
 [github]
